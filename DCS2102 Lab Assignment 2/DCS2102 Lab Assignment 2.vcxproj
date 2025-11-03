@@ -125,6 +125,11 @@
   <ItemGroup>
     <ClCompile Include="DCS2102 Lab Assignment 2.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="Student.h" />
+    <ClInclude Include="System.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
