@@ -7,9 +7,25 @@ using namespace std;
 int main()
 {
     System* system = new System();
+    bool running = true;
+    int selection;
 
-    system->registerStudent();
-    system->loginStudent("test", "test123");
+    while (running) {
+        cout << "----------------------------------" << endl;
+        cout << "Course enrollment program" << endl;
+        cout << "----------------------------------" << endl;
+        cout << "1. Student register" << endl;
+        cout << "2. Student login" << endl;
+        cout << "3. Admin login" << endl;
+        cout << "Make your selection (1 - 3): ";
+        cin >> selection;
+        switch (selection) {
+        case 1: system->registerStudent(); break;
+        case 2: system->loginStudent(); break;
+        case 3: cout << "Waiting for Anderson's part"; break;
+        default: cout << "Invalid selection, please try again!" << endl;
+        }
+    }
 }
 
 // TODO:

@@ -20,4 +20,8 @@ public:
 	string getUsername() {
 		return this->username;
 	}
+
+	string getPassword() {
+		return this->password;
+	}
 };

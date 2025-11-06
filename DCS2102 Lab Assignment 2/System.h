@@ -5,16 +5,10 @@
 
 using namespace std;
 
-struct Course {
-	std::string courseName;
-	int capacity;
-	int numberOfStudents;
-};
-
 class System {
 private:
-	Course* courses = nullptr;
-	int courseCount = 0;
+	string courses[5] = {"Data structures", "Networking", "Data forensic", "Ethical hacking", "System Analysis"};
+	int courseCount = 5;
 
 	Student* students = nullptr;
 	int studentCount = 0;
@@ -30,6 +24,14 @@ public:
 
 		cout << "Enter username: ";
 		cin >> username;
+
+		for (int i = 0; i < studentCount; i++) {
+			if (username == students[i].getUsername()) {
+				cout << "Username is taken, please use a unique username!";
+				return;
+			}
+		}
+
 		cout << "Password: ";
 		cin >> password;
 
@@ -47,16 +49,33 @@ public:
 		cout << username << " successfully created." << endl;
 	}
 
-	void loginStudent(string username, string password) {
+	bool loginStudent() {
 		// I'm not sure if this is the most efficient way to do it, but this is the only way I know
+		string username, password;
+
+		cout << "Enter username: ";
+		cin >> username;
+
+		cout << "Password: ";
+		cin >> password;
 
 		for (int i = 0; i < studentCount; i++) {
 			if (username == students[i].getUsername()) {
-				cout << "User found";
-				return;
+				if (password == students[i].getPassword()) {
+					cout << "Welcome, " << username << endl;
+					return true;
+				}
 			}
 		}
 
-		cout << "User not found";
+		cout << "\nIncorrect credentials, please try again!";
+		return false;
+	}
+
+	void studentEnroll(string username) { // Assuming user has logged in
+		cout << "Available courses: " << endl;
+		for (int i = 0; i < studentCount; i++) {
+			cout << i + 1 << ". " << courses[i] << endl;
+		}
 	}
 };
