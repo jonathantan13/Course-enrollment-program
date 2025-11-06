@@ -1,10 +1,15 @@
-// DCS2102 Lab Assignment 2.cpp : Jonathan Tan & Gan Jun Hoe
+// DCS2102 Lab Assignment 2.cpp : Jonathan Tan
 
 #include <iostream>
+#include "System.h"
+using namespace std;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    System* system = new System();
+
+    system->registerStudent();
+    system->loginStudent("test", "test123");
 }
 
 // TODO:
