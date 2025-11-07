@@ -10,8 +10,8 @@ private:
 
 public:
     Admin() {
-        username = "";
-        password = "";
+        username = "admin";
+        password = "password";
     }
 
     Admin(string u, string p) {
