@@ -49,16 +49,8 @@ public:
 		cout << username << " successfully created." << endl;
 	}
 
-	bool loginStudent() {
-		// I'm not sure if this is the most efficient way to do it, but this is the only way I know
-		string username, password;
-
-		cout << "Enter username: ";
-		cin >> username;
-
-		cout << "Password: ";
-		cin >> password;
-
+	bool loginStudent(string username, string password) {
+		// I'm not sure if this is the most efficient way to do it, but this is the only way I 
 		for (int i = 0; i < studentCount; i++) {
 			if (username == students[i].getUsername()) {
 				if (password == students[i].getPassword()) {
@@ -68,7 +60,7 @@ public:
 			}
 		}
 
-		cout << "\nIncorrect credentials, please try again!";
+		cout << "\nIncorrect credentials, please try again!" << endl;
 		return false;
 	}
 

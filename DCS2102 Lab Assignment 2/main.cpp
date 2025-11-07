@@ -4,6 +4,9 @@
 #include "System.h"
 using namespace std;
 
+void studentMenu(System&, string);
+void adminMenu();
+
 int main()
 {
     System* system = new System();
@@ -14,18 +17,41 @@ int main()
         cout << "----------------------------------" << endl;
         cout << "Course enrollment program" << endl;
         cout << "----------------------------------" << endl;
-        cout << "1. Student register" << endl;
+        cout << "1. Create student account" << endl;
         cout << "2. Student login" << endl;
         cout << "3. Admin login" << endl;
+        cout << "4. Exit" << endl;
         cout << "Make your selection (1 - 3): ";
         cin >> selection;
-        switch (selection) {
-        case 1: system->registerStudent(); break;
-        case 2: system->loginStudent(); break;
-        case 3: cout << "Waiting for Anderson's part"; break;
-        default: cout << "Invalid selection, please try again!" << endl;
+        
+        if (selection == 1) {
+            system->registerStudent();
+        } else if (selection == 2) {
+            string username, password;
+
+            cout << "Enter username: ";
+            cin >> username;
+
+            cout << "Password: ";
+            cin >> password;
+
+            if (system->loginStudent(username, password)) studentMenu(*system, username);
+        } else if (selection == 3) {
+
+        } else if (selection == 4) {
+            break;
+        } else {
+            cout << "Invalid selection, please try again!" << endl;
         }
     }
+}
+
+void studentMenu(System& system, string username) {
+    cout << "Hello from the student menu";
+}
+
+void adminMenu() {
+
 }
 
 // TODO:
