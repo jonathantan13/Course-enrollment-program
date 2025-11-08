@@ -12,6 +12,11 @@ int main()
     System* system = new System();
     int selection;
 
+    // Test to check if courses are available
+    system->addCourse();
+    system->addCourse();
+    system->addCourse();
+
     while (true) {
         cout << "----------------------------------" << endl;
         cout << "Course enrollment program" << endl;
@@ -51,9 +56,9 @@ void studentMenu(System& system, string username) {
     
     cout << endl;
     while (true) {
-        cout << "\n----------------------------------" << endl;
+        cout << "\n-------------------------------------" << endl;
         cout << "Student Menu (Logged in as: " << username << ")" << endl;
-        cout << "----------------------------------" << endl;
+        cout << "---------------------------------------" << endl;
         cout << "1. Enroll in a course" << endl;
         cout << "2. Drop a course" << endl;
         cout << "3. View enrolled courses" << endl;
@@ -65,7 +70,7 @@ void studentMenu(System& system, string username) {
         if (selection == 1) {
             int courseSelection;
 
-            system.availableCourses();
+            system.printCourses();
             cin >> courseSelection;
 
             system.studentEnrollment(student, courseSelection);

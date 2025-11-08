@@ -41,6 +41,10 @@ public:
 		cout << "Enrolled in " << course << ". Total courses enrolled: " << enrolledCount;
 	}
 
+	void dropCourse(string course) {
+
+	}
+
 	void enrolledCourses() {
 		cout << "\n-------------------------------------" << endl;
 		cout << "Enrolled courses: " << endl;
