@@ -50,7 +50,6 @@ public:
 	}
 
 	bool loginStudent(string username, string password) {
-		// I'm not sure if this is the most efficient way to do it, but this is the only way I 
 		for (int i = 0; i < studentCount; i++) {
 			if (username == students[i].getUsername()) {
 				if (password == students[i].getPassword()) {
@@ -59,15 +58,29 @@ public:
 				}
 			}
 		}
-
 		cout << "\nIncorrect credentials, please try again!" << endl;
 		return false;
 	}
 
-	void studentEnroll(string username) { // Assuming user has logged in
+	void availableCourses() {
+		cout << "\n-------------------------------------" << endl;
 		cout << "Available courses: " << endl;
-		for (int i = 0; i < studentCount; i++) {
+		for (int i = 0; i < courseCount; i++) {
 			cout << i + 1 << ". " << courses[i] << endl;
 		}
+		cout << "-------------------------------------" << endl;
+		cout << "Select from 1 - " << courseCount << " to enroll: ";
+	}
+
+	Student* findStudent(string username) {
+		for (int i = 0; i < studentCount; i++) {
+			if (students[i].getUsername() == username) {
+				return &students[i];
+			}
+		}
+	}
+
+	void studentEnrollment(Student* student, int selection) {
+		student->enroll(courses[selection - 1]);
 	}
 };

@@ -10,10 +10,9 @@ void adminMenu();
 int main()
 {
     System* system = new System();
-    bool running = true;
     int selection;
 
-    while (running) {
+    while (true) {
         cout << "----------------------------------" << endl;
         cout << "Course enrollment program" << endl;
         cout << "----------------------------------" << endl;
@@ -47,15 +46,43 @@ int main()
 }
 
 void studentMenu(System& system, string username) {
-    cout << "Hello from the student menu";
+    int selection;
+    Student* student = system.findStudent(username);
+    
+    cout << endl;
+    while (true) {
+        cout << "\n----------------------------------" << endl;
+        cout << "Student Menu (Logged in as: " << username << ")" << endl;
+        cout << "----------------------------------" << endl;
+        cout << "1. Enroll in a course" << endl;
+        cout << "2. Drop a course" << endl;
+        cout << "3. View enrolled courses" << endl;
+        cout << "4. Logout" << endl;
+        cout << "Enter choice: ";
+
+        cin >> selection;
+
+        if (selection == 1) {
+            int courseSelection;
+
+            system.availableCourses();
+            cin >> courseSelection;
+
+            system.studentEnrollment(student, courseSelection);
+            
+        } else if (selection == 2) {
+            // remove course from student's array
+        } else if (selection == 3) {
+            student->enrolledCourses();
+        } else if (selection == 4) {
+            break;
+        } else {
+            cout << "Invalid selection, please try again!" << endl;
+        }
+    }
+    return;
 }
 
 void adminMenu() {
 
 }
-
-// TODO:
-// 1) Create 3 classes: Student, Admin, and System. 
-// All instances of the Student class can enroll in courses. 
-// All instances of the Admin class will be allowed to add or remove courses.
-// All instances of the System will keep track of all users and admins as well as the available courses
