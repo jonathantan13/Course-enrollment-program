@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Admin.h" />
+    <ClInclude Include="Course.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="System.h" />
   </ItemGroup>

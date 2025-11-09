@@ -13,9 +13,9 @@ int main()
     int selection;
 
     // Test to check if courses are available
-    system->addCourse();
-    system->addCourse();
-    system->addCourse();
+    system->addCourse("DS", "Data Structures");
+    system->addCourse("NW", "Networking");
+    system->addCourse("SA", "System Analysis");
 
     while (true) {
         cout << "----------------------------------" << endl;
@@ -76,7 +76,14 @@ void studentMenu(System& system, string username) {
             system.studentEnrollment(student, courseSelection);
             
         } else if (selection == 2) {
-            // remove course from student's array
+            string courseCode;
+
+            student->enrolledCourses();
+
+            cout << "Enter course code you wish to drop: ";
+            cin >> courseCode;
+
+            student->dropCourse(courseCode);
         } else if (selection == 3) {
             student->enrolledCourses();
         } else if (selection == 4) {
@@ -89,5 +96,13 @@ void studentMenu(System& system, string username) {
 }
 
 void adminMenu() {
+    // For admins to add courses
+    //string courseName, courseCode;
 
+    //cout << "Enter course name: ";
+    //cin.ignore();
+    //getline(cin, courseName);
+
+    //cout << "Enter course code: ";
+    //cin >> courseCode;
 }

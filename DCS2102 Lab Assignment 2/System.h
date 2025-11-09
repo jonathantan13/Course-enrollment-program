@@ -2,16 +2,9 @@
 #include <string>
 #include "Student.h"
 #include "Admin.h"
+#include "Course.h"
 
 using namespace std;
-
-struct Course {
-	string courseCode;
-	string courseName;
-	Course* next;
-
-	Course(string c, string n, Course* np = nullptr) : courseCode(c), courseName(n), next(np) {}
-};
 
 class System {
 private:
@@ -43,20 +36,11 @@ public:
 		if (courseCount > 0) {
 			cout << "Select from 1 - " << courseCount << " to enroll: ";
 		} else {
-			cout << "No courses available.\n";
+			cout << "No courses available." << endl;
 		}
 	}
 
-	void addCourse() {
-		string courseName, courseCode;
-
-		cout << "Enter course name: ";
-		cin.ignore();
-		getline(cin, courseName);
-
-		cout << "Enter course code: ";
-		cin >> courseCode;
-
+	void addCourse(string courseCode, string courseName) {
 		Course* newCourse = new Course(courseCode, courseName);
 
 		if (courseHead == nullptr) {
@@ -74,7 +58,7 @@ public:
 	}
 
 	void removeCourse() {
-
+		
 	}
 
 	void findCourse() {
@@ -124,7 +108,6 @@ public:
 		return false;
 	}
 
-
 	Student* findStudent(string username) {
 		for (int i = 0; i < studentCount; i++) {
 			if (students[i].getUsername() == username) {
@@ -136,16 +119,14 @@ public:
 	void studentEnrollment(Student* student, int selection) {
 		Course* targetCourse = courseHead;
 
-		for (int i = 0; i < selection; i++) {
-				targetCourse = targetCourse->next;
+		for (int i = 0; i < selection - 1; i++) {
+			targetCourse = targetCourse->next;
 		}
 
-		cout << targetCourse;
-
-		//if (targetCourse != nullptr) {
-		//	student->enrolledCourses(targetCourse);
-		//} else {
-		//	cout << "Invalid selection." << endl;
-		//}
+		if (targetCourse != nullptr) {
+			student->enroll(targetCourse);
+		} else {
+			cout << "Invalid selection." << endl;
+		}
 	}
 };
