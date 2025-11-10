@@ -2,20 +2,25 @@
 
 #include <iostream>
 #include "System.h"
+#include "Student.h"
+#include "Admin.h"
+
 using namespace std;
 
 void studentMenu(System&, string);
-void adminMenu();
+void adminMenu(System&);
 
 int main()
 {
     System* system = new System();
     int selection;
 
-    // Test to check if courses are available
+    // Some starting courses for testing purposes (parameters: courseCode, courseName)
+    cout << "(FOR TESTING PURPOSES)" << endl;
     system->addCourse("DS", "Data Structures");
     system->addCourse("NW", "Networking");
     system->addCourse("SA", "System Analysis");
+    cout << endl;
 
     while (true) {
         cout << "----------------------------------" << endl;
@@ -41,7 +46,16 @@ int main()
 
             if (system->loginStudent(username, password)) studentMenu(*system, username);
         } else if (selection == 3) {
+            string username, password;
 
+            cout << "Enter username: ";
+            cin >> username;
+
+            cout << "Password: ";
+            cin >> password;
+
+            if (system->loginAdmin(username, password)) adminMenu(*system);
+            else cout << "Incorrect credentials!" << endl;
         } else if (selection == 4) {
             break;
         } else {
@@ -70,7 +84,7 @@ void studentMenu(System& system, string username) {
         if (selection == 1) {
             int courseSelection;
 
-            system.printCourses();
+            system.printCourses(true);
             cin >> courseSelection;
 
             system.studentEnrollment(student, courseSelection);
@@ -95,14 +109,38 @@ void studentMenu(System& system, string username) {
     return;
 }
 
-void adminMenu() {
-    // For admins to add courses
-    //string courseName, courseCode;
+void adminMenu(System& system) {
+    int selection;
+    Admin* admin = system.findAdmin();
 
-    //cout << "Enter course name: ";
-    //cin.ignore();
-    //getline(cin, courseName);
+    cout << endl;
+    while (true) {
+        cout << "\n-------------------------------------" << endl;
+        cout << "Course menu (Logged in as admin)" << endl;
+        cout << "---------------------------------------" << endl;
+        cout << "1. Add course" << endl;
+        cout << "2. Remove course" << endl;
+        cout << "3. View all courses" << endl;
+        cout << "4. Logout" << endl;
+        cout << "Enter choice: ";
 
-    //cout << "Enter course code: ";
-    //cin >> courseCode;
+        cin >> selection;
+
+        if (selection == 1) {
+            admin->addCourse(system);
+        }
+        else if (selection == 2) {
+            admin->removeCourse(system);
+        }
+        else if (selection == 3) {
+            system.printCourses();
+        }
+        else if (selection == 4) {
+            break;
+        }
+        else {
+            cout << "Invalid selection, please try again!" << endl;
+        }
+    }
+    return;
 }
