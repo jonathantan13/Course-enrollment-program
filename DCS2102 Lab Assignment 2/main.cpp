@@ -46,6 +46,8 @@ int main()
 
             if (system->loginStudent(username, password)) studentMenu(*system, username);
         } else if (selection == 3) {
+            cout << "(For testing purposes, the username is admin and password is admin123)" << endl;
+
             string username, password;
 
             cout << "Enter username: ";
@@ -56,11 +58,9 @@ int main()
 
             if (system->loginAdmin(username, password)) adminMenu(*system);
             else cout << "Incorrect credentials!" << endl;
-        } else if (selection == 4) {
-            break;
-        } else {
-            cout << "Invalid selection, please try again!" << endl;
-        }
+        } 
+        else if (selection == 4) break;
+        else cout << "Invalid selection, please try again!" << endl;
     }
 }
 
@@ -98,13 +98,10 @@ void studentMenu(System& system, string username) {
             cin >> courseCode;
 
             student->dropCourse(courseCode);
-        } else if (selection == 3) 
-            student->enrolledCourses();
-        else if (selection == 4) 
-            break;
-        else 
-            cout << "Invalid selection, please try again!" << endl;
-        
+        } 
+        else if (selection == 3) student->enrolledCourses();
+        else if (selection == 4) break;
+        else cout << "Invalid selection, please try again!" << endl;
     }
     return;
 }
@@ -145,12 +142,9 @@ void adminMenu(System& system) {
 
             system.removeCourse(courseCode);
         }
-        else if (selection == 3) 
-            system.printCourses();
-        else if (selection == 4) 
-            break;
-        else 
-            cout << "Invalid selection, please try again!" << endl;
+        else if (selection == 3) system.printCourses(false);
+        else if (selection == 4) break;
+        else cout << "Invalid selection, please try again!" << endl;
     }
     return;
 }
