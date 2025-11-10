@@ -16,9 +16,9 @@ Student::Student(string username, string password) {
 Student::~Student() {
     Course* current = courseHead;
     while (current != nullptr) {
-        Course* nodeToDelete = current;
+        Course* courseToDelete = current;
         current = current->next;
-        delete nodeToDelete;
+        delete courseToDelete;
     }
 }
 

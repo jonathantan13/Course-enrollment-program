@@ -13,9 +13,6 @@ private:
 
 public:
     Admin();
-
-    void addCourse(System& system);
-    void removeCourse(System& system);
     string getUsername();
     string getPassword();
 };

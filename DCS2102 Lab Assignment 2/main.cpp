@@ -15,7 +15,7 @@ int main()
     System* system = new System();
     int selection;
 
-    // Some starting courses for testing purposes (parameters: courseCode, courseName)
+    // Some starting courses for test purposes (parameters: courseCode, courseName)
     cout << "(FOR TESTING PURPOSES)" << endl;
     system->addCourse("DS", "Data Structures");
     system->addCourse("NW", "Networking");
@@ -98,26 +98,25 @@ void studentMenu(System& system, string username) {
             cin >> courseCode;
 
             student->dropCourse(courseCode);
-        } else if (selection == 3) {
+        } else if (selection == 3) 
             student->enrolledCourses();
-        } else if (selection == 4) {
+        else if (selection == 4) 
             break;
-        } else {
+        else 
             cout << "Invalid selection, please try again!" << endl;
-        }
+        
     }
     return;
 }
 
 void adminMenu(System& system) {
     int selection;
-    Admin* admin = system.findAdmin();
 
     cout << endl;
     while (true) {
         cout << "\n-------------------------------------" << endl;
         cout << "Course menu (Logged in as admin)" << endl;
-        cout << "---------------------------------------" << endl;
+        cout << "-------------------------------------" << endl;
         cout << "1. Add course" << endl;
         cout << "2. Remove course" << endl;
         cout << "3. View all courses" << endl;
@@ -127,20 +126,31 @@ void adminMenu(System& system) {
         cin >> selection;
 
         if (selection == 1) {
-            admin->addCourse(system);
+            string courseName, courseCode;
+
+            cout << "Enter course name: ";
+            cin.ignore();
+            getline(cin, courseName);
+
+            cout << "Enter course code: ";
+            cin >> courseCode;
+
+            system.addCourse(courseCode, courseName);
         }
         else if (selection == 2) {
-            admin->removeCourse(system);
+            string courseCode;
+
+            cout << "Enter course code you wish to remove: ";
+            cin >> courseCode;
+
+            system.removeCourse(courseCode);
         }
-        else if (selection == 3) {
+        else if (selection == 3) 
             system.printCourses();
-        }
-        else if (selection == 4) {
+        else if (selection == 4) 
             break;
-        }
-        else {
+        else 
             cout << "Invalid selection, please try again!" << endl;
-        }
     }
     return;
 }

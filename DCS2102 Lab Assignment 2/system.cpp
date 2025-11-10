@@ -15,9 +15,9 @@ System::~System() {
 
     Course* current = courseHead;
     while (current != nullptr) {
-        Course* nodeToDelete = current;
+        Course* courseToDelete = current;
         current = current->next;
-        delete nodeToDelete;
+        delete courseToDelete;
     }
     cout << "System shutting down, all memory freed." << endl;
 }
